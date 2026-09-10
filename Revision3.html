@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Revision3.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="assignment-1">Assignment 1</h2>
+<p>Due date: Sept 15, Tuesday at 11:45 PM</p>
+<h3 id="any-questions-from-the-last-class">Any questions from the last class?</h3>
+<h3 id="is-the-java-setup-working">Is the Java setup working?</h3>
+<h3 id="how-confident-do-you-feel-about-assignment-1">How confident do you feel about Assignment 1?</h3>
+<h3 id="is-the-course-going-too-slow-or-too-fast">Is the course going too slow or too fast?</h3>
+<h1 id="learning-objectives">Learning Objectives</h1>
+<ul>
+<li>Understanding scope</li>
+<li>Revising Conditionals</li>
+<li>Revising Loops</li>
+<li>Revising Arrays</li>
+<li>Revising Parameters and Array Types</li>
+</ul>
+<h1 id="scope">Scope</h1>
+<h2 id="what-is-scope">What is scope?</h2>
+<p>Scope is the part of a program in which a particular declaration is valid.</p>
+<h2 id="scope-of-variables">Scope of Variables</h2>
+<p>The scope of a variable is from its declaration statement to the right curly brace that encloses it.</p>
+<ul>
+<li>A variable declared in a for loop exists only in that loop.</li>
+<li>A variable declared in a method exists only in that method.</li>
+</ul>
+<h2 id="localizing-variables">Localizing Variables:</h2>
+<p>declaring variables in the innermost scope possible</p>
+<ul>
+<li>Security</li>
+<li>Minimize interference from other program parts</li>
+<li>Efficiency</li>
+</ul>
+<p>Localizing variables reduces the complexity of the code.</p>
+<pre class="hljs"><code><div>    <span class="hljs-comment">/**
+    * Shows scope of variables -Multiples
+    *
+    * <span class="hljs-doctag">@authorJessica</span> Young Schmidt
+    */</span>
+    publicclassScope {
+    <span class="hljs-comment">/**
+    * Starts the program.
+    *
+    * <span class="hljs-doctag">@paramargs</span>
+    * command line arguments
+    */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">int</span> multiples= <span class="hljs-number">2</span>;
+        System.out.println(<span class="hljs-string">&quot;Begin: Multiples of &quot;</span>+ multiples);
+        <span class="hljs-keyword">for</span>(inti= <span class="hljs-number">1</span>; i&lt;= <span class="hljs-number">10</span>; i++) {
+        System.out.println(multiples+ <span class="hljs-string">&quot; * &quot;</span>+ i+ <span class="hljs-string">&quot; = &quot;</span>+ multiples * i);
+            } <span class="hljs-comment">// i no longer exists</span>
+        System.out.println(<span class="hljs-string">&quot;End: Multiples of &quot;</span>+ multiples);
+        } <span class="hljs-comment">// multiples no longer exists</span>
+    }
+</div></code></pre>
+<h2 id="scope-things-to-remember">Scope: Things to Remember</h2>
+<ul>
+<li>Variables without overlapping scope can have same name.</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (inti= <span class="hljs-number">1</span>; i&lt;= <span class="hljs-number">100</span>; i++) {
+    System.out.print(<span class="hljs-string">&quot;/&quot;</span>);
+}
+<span class="hljs-keyword">for</span> (inti= <span class="hljs-number">1</span>; i&lt;= <span class="hljs-number">100</span>; i++) { <span class="hljs-comment">// OK</span>
+    System.out.print(<span class="hljs-string">&quot;\\&quot;</span>);
+}
+<span class="hljs-type">int</span> i= <span class="hljs-number">5</span>;
+</div></code></pre>
+<ul>
+<li>A variable cannot be declared twice or used out of its scope.</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (inti= <span class="hljs-number">1</span>; i&lt;= <span class="hljs-number">100</span> * line; i++) {
+    <span class="hljs-type">int</span> i= <span class="hljs-number">2</span>; <span class="hljs-comment">// ERROR: overlapping scope</span>
+    System.out.print(<span class="hljs-string">&quot;/&quot;</span>);
+}
+i= <span class="hljs-number">4</span>; <span class="hljs-comment">// ERROR: outside scope</span>
+</div></code></pre>
+<h2 id="magic-numbers">Magic Numbers</h2>
+<p>Numbers that make the program work, but have no obvious meaning in the program. We should avoid magic numbers when we program by using constants.</p>
+<p>BAD (Magic Number):</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i= <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++) {
+    System.out.println(<span class="hljs-string">&quot;i= &quot;</span> + i);
+}
+</div></code></pre>
+<p>BETTER (Constant):</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">MAX_VALUE</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i= <span class="hljs-number">1</span>; i&lt;= MAX_VALUE; i++) {
+    System.out.println(<span class="hljs-string">&quot;i= &quot;</span> + i);
+}
+</div></code></pre>
+<ul>
+<li>Constants help to reduce complexity by eliminating magic numbers.</li>
+<li>Constants make our programs more readable and adaptable.</li>
+<li>Named constants provide explanation about the value.</li>
+</ul>
+<h1 id="conditionals">Conditionals</h1>
+<p>Instruct the computer to execute different lines of code depending on whether a condition is true or false.</p>
+<ul>
+<li><code>if</code> statement</li>
+<li><code>if/else</code> statements</li>
+<li>Sequential <code>if</code> statements</li>
+<li>Nested <code>if/else</code> statements</li>
+</ul>
+<h2 id="if-statement">if Statement</h2>
+<p><code>if Statement:</code> a Java statement that executes only if a specific condition is true. If the condition is false, the statement is not executed.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">if</span> (&lt;condition/test&gt;) {
+    &lt;statement&gt;;
+    &lt;statement&gt;;
+    ...
+    &lt;statement&gt;;
+}
+    &lt;statement&gt;;
+</div></code></pre>
+<p><img src="images/if-statement.png" alt="if statement structure"></p>
+<pre class="hljs"><code><div><span class="hljs-type">Scanner</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> newScanner(System.in);
+System.out.print(<span class="hljs-string">&quot;GPA: &quot;</span>);
+<span class="hljs-type">double</span> gpa= in.nextDouble();
+<span class="hljs-keyword">if</span>(gpa &gt;= <span class="hljs-number">3.0</span>) {
+    System.out.println(<span class="hljs-string">&quot;Application accepted.&quot;</span>);
+}
+System.out.println(<span class="hljs-string">&quot;Thank you for applying!&quot;</span>);
+</div></code></pre>
+<h2 id="ifelse-statements">if/else Statements</h2>
+<p><code>if/else Statements:</code> One block of statements are executed if the condition is true and the other block is executed if the condition is false.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">if</span> (&lt;condition/test&gt;) {
+    &lt;statement&gt;;
+    &lt;statement&gt;;
+    ...
+    &lt;statement&gt;;
+} <span class="hljs-keyword">else</span> {
+&lt;statement&gt;;
+...
+&lt;statement&gt;;
+}
+</div></code></pre>
+<p><img src="images/if-else.png" alt="if/else statement structure"></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span>( gpa &gt;= <span class="hljs-number">3.0</span>) {
+    System.out.println(<span class="hljs-string">&quot;Application accepted.&quot;</span>);
+} <span class="hljs-keyword">else</span>{
+    System.out.println(<span class="hljs-string">&quot;Please submit an essay&quot;</span>);
+}
+System.out.println(<span class="hljs-string">&quot;Thank you for applying!&quot;</span>);
+</div></code></pre>
+<h2 id="sequential-if-statements">Sequential if Statements</h2>
+<p><code>Sequential if Statements:</code> Choose 0, 1, or many paths through the code. Conditions and the associated actions are independent</p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">if</span> (&lt;condition1/test1&gt;) {
+    &lt;statement1&gt;;
+}
+<span class="hljs-keyword">if</span> (&lt;condition2/test2&gt;) {
+    &lt;statement2&gt;;
+}
+<span class="hljs-keyword">if</span> (&lt;condition3/test3&gt;) {
+    &lt;statement3&gt;;
+}
+</div></code></pre>
+<p><img src="images/sequential-if.png" alt="sequential if statements structure"></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getLetterGrade</span><span class="hljs-params">(<span class="hljs-type">int</span> score)</span> {
+    String grade= <span class="hljs-string">&quot;&quot;</span>;
+    <span class="hljs-keyword">if</span>(score&gt;= <span class="hljs-number">90</span>) {
+        grade= <span class="hljs-string">&quot;A&quot;</span>;
+    }
+    <span class="hljs-keyword">if</span>(score&gt;= <span class="hljs-number">80</span>) {
+        grade= <span class="hljs-string">&quot;B&quot;</span>;
+    }
+    <span class="hljs-keyword">if</span>(score&gt;= <span class="hljs-number">70</span>) {
+        grade= <span class="hljs-string">&quot;C&quot;</span>;
+    }
+    <span class="hljs-keyword">if</span>(score&gt;= <span class="hljs-number">60</span>) {
+        grade= <span class="hljs-string">&quot;D&quot;</span>;
+    }
+    <span class="hljs-keyword">if</span>(score&lt; <span class="hljs-number">60</span>) {
+        grade= <span class="hljs-string">&quot;F&quot;</span>;
+    }
+    <span class="hljs-keyword">return</span> grade;
+}
+</div></code></pre>
+<h3 id="what-would-getlettergrade97-return">What would getLetterGrade(97) return?</h3>
+<h2 id="nested-ifelse-statements">Nested if/else Statements</h2>
+<p><code>Sequential if Statements:</code> Chooses between many outcomes using many conditions</p>
+<ul>
+<li>Can end in <code>else</code> or <code>if</code>
+<ul>
+<li><code>else</code> Choose one of many paths</li>
+<li><code>if</code> Choose one or 0 of many paths</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (&lt;condition/test1&gt;) {
+    &lt;statement(s)&gt; ;
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (&lt;condition/test2&gt;) {
+    &lt;statement(s)&gt; ;
+} <span class="hljs-keyword">else</span> {
+    &lt;statement(s)&gt; ;
+}
+</div></code></pre>
+<p><img src="images/nested-if.png" alt="nested if/else statements structure"></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getLetterGrade</span><span class="hljs-params">(<span class="hljs-type">int</span> score)</span> {
+    String grade= <span class="hljs-string">&quot;&quot;</span>;
+    <span class="hljs-keyword">if</span>(score &gt;= <span class="hljs-number">90</span>) {
+        grade= <span class="hljs-string">&quot;A&quot;</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(score &gt;= <span class="hljs-number">80</span>) {
+        grade= <span class="hljs-string">&quot;B&quot;</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(score &gt;= <span class="hljs-number">70</span>) {
+        grade= <span class="hljs-string">&quot;C&quot;</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(score &gt;= <span class="hljs-number">60</span>) {
+        grade= <span class="hljs-string">&quot;D&quot;</span>;
+    } <span class="hljs-keyword">else</span>{
+        grade= <span class="hljs-string">&quot;F&quot;</span>;
+    }
+    <span class="hljs-keyword">return</span> grade;
+}
+</div></code></pre>
+<h3 id="what-would-getlettergrade97-return-1">What would getLetterGrade(97) return?</h3>
+<h3 id="what-would-getlettergrade53-return">What would getLetterGrade(53) return?</h3>
+<h3 id="what-would-getlettergrade-53-return">What would getLetterGrade(-53) return?</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getLetterGrade</span><span class="hljs-params">(<span class="hljs-type">int</span> score)</span> {
+    String grade= <span class="hljs-string">&quot;&quot;</span>;
+    <span class="hljs-keyword">if</span>(score &gt;= <span class="hljs-number">90</span>) {
+        grade= <span class="hljs-string">&quot;A&quot;</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(score &gt;= <span class="hljs-number">80</span>) {
+        grade= <span class="hljs-string">&quot;B&quot;</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(score &gt;= <span class="hljs-number">70</span>) {
+        grade= <span class="hljs-string">&quot;C&quot;</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(score &gt;= <span class="hljs-number">60</span>) {
+        grade= <span class="hljs-string">&quot;D&quot;</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(score &gt;= <span class="hljs-number">0</span>) {
+        grade= <span class="hljs-string">&quot;F&quot;</span>;
+    }
+    <span class="hljs-keyword">return</span> grade;
+}
+</div></code></pre>
+<h3 id="what-would-getlettergrade97-return-2">What would getLetterGrade(97) return?</h3>
+<h3 id="what-would-getlettergrade53-return-1">What would getLetterGrade(53) return?</h3>
+<h3 id="what-would-getlettergrade-53-return-1">What would getLetterGrade(-53) return?</h3>
+<h3 id="exercise">Exercise</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">ifElseMystery2</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> {
+    <span class="hljs-keyword">if</span> (a* <span class="hljs-number">2</span> &lt; b) {
+        a = a* <span class="hljs-number">3</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(a &gt; b) {
+        b = b+ <span class="hljs-number">3</span>;
+    }
+    <span class="hljs-keyword">if</span>(b &lt; a) {
+        b++;
+    } <span class="hljs-keyword">else</span>{
+        a--;
+    }
+    System.out.println(a+ <span class="hljs-string">&quot; &quot;</span>+ b);
+}
+</div></code></pre>
+<h1 id="loops">Loops</h1>
+<h2 id="for-loop">for loop</h2>
+<p>A <code>for</code> loop is a control structure (a syntactic structure that controls other statements)</p>
+<ul>
+<li>loops reduce redundancy</li>
+<li>reduces the amount of code we need</li>
+</ul>
+<pre class="hljs"><code><div>System.out.println(<span class="hljs-number">1</span> + <span class="hljs-string">&quot; squared = &quot;</span> + (<span class="hljs-number">1</span> * <span class="hljs-number">1</span>));
+System.out.println(<span class="hljs-number">2</span> + <span class="hljs-string">&quot; squared = &quot;</span> + (<span class="hljs-number">2</span> * <span class="hljs-number">2</span>));
+System.out.println(<span class="hljs-number">3</span> + <span class="hljs-string">&quot; squared = &quot;</span> + (<span class="hljs-number">3</span> * <span class="hljs-number">3</span>));
+System.out.println(<span class="hljs-number">4</span> + <span class="hljs-string">&quot; squared = &quot;</span> + (<span class="hljs-number">4</span> * <span class="hljs-number">4</span>));
+System.out.println(<span class="hljs-number">5</span> + <span class="hljs-string">&quot; squared = &quot;</span> + (<span class="hljs-number">5</span> * <span class="hljs-number">5</span>));
+</div></code></pre>
+<pre class="hljs"><code><div>intx = <span class="hljs-number">1</span>;
+System.out.println(x + <span class="hljs-string">&quot; squared = &quot;</span> + (x * x));
+x++;
+System.out.println(x + <span class="hljs-string">&quot; squared = &quot;</span> + (x * x));
+x++;
+System.out.println(x + <span class="hljs-string">&quot; squared = &quot;</span> + (x * x));
+x++;
+System.out.println(x + <span class="hljs-string">&quot; squared = &quot;</span> + (x * x));
+x++;
+System.out.println(x + <span class="hljs-string">&quot; squared = &quot;</span> + (x * x));
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (inti= <span class="hljs-number">1</span>; i&lt;= <span class="hljs-number">5</span>; i++) {
+    System.out.println(i+ <span class="hljs-string">&quot; squared = &quot;</span> + (i* i));
+}
+</div></code></pre>
+<h3 id="syntax">Syntax</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (&lt;initialization&gt;; &lt;continuation test&gt;; &lt;update&gt;){
+    &lt;statement&gt;;
+    &lt;statement&gt;;
+    . . .
+    &lt;statement&gt;;
+}
+</div></code></pre>
+<p><img src="images/for-loop.png" alt="For loop structure"></p>
+<h3 id="initialization">Initialization</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i= <span class="hljs-number">0</span>; i&lt; <span class="hljs-number">5</span>; i++){
+    System.out.println(i);
+}
+</div></code></pre>
+<p><code>for (int i = 0;</code></p>
+<p>Tells Java what variable to use in the loop</p>
+<ul>
+<li>Performed once as the loop begins</li>
+<li>The variable is called a loop counter.
+<ul>
+<li>can use any name, not just i</li>
+<li>can start at any value, not just 0</li>
+</ul>
+</li>
+</ul>
+<h3 id="continuation-test">Continuation Test</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i= <span class="hljs-number">0</span>; i&lt; <span class="hljs-number">5</span>; i++){
+    System.out.println(i);
+}
+</div></code></pre>
+<p><code>for (... i &lt; 5;</code></p>
+<p>Tests the loop counter variable against a limit.</p>
+<p>Uses relational operators:</p>
+<p> &lt;   less than<br>
+ &lt;=   less than or equal to<br>
+ &gt;   greater than<br>
+ &gt;=   greater than or equal to<br></p>
+<h3 id="update">Update</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i= <span class="hljs-number">0</span>; i&lt; <span class="hljs-number">5</span>; i++){
+    System.out.println(i);
+}
+</div></code></pre>
+<p><code>for (... i++</code></p>
+<p>Updates the loop counter variable</p>
+<ul>
+<li>Increment and decrement by 1</li>
+<li>Increment and Decrement Operators</li>
+</ul>
+<h2 id="nested-for-loop">Nested for Loop</h2>
+<p><em>Nested loop:</em> A loop placed inside of another loop.</p>
+<h3 id="syntax-1">Syntax</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (&lt;initialization&gt;; &lt;continuation test&gt;; &lt;update&gt;){
+    &lt;statement&gt;;
+    <span class="hljs-keyword">for</span> (&lt;initialization&gt;; &lt;continuation test&gt;; &lt;update&gt;){
+        &lt;statement&gt;;
+        &lt;statement&gt;;
+        . . .
+        &lt;statement&gt;;
+    }
+    . . .
+    &lt;statement&gt;;
+}
+</div></code></pre>
+<p>Example:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i= <span class="hljs-number">0</span>; i&lt; <span class="hljs-number">6</span>; i++) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">10</span>; j++) {
+        System.out.print(<span class="hljs-string">&quot;*&quot;</span>);
+    }
+    System.out.println();
+}
+</div></code></pre>
+<p>Output:</p>
+<pre class="hljs"><code><div>**********
+**********
+**********
+**********
+**********
+**********
+</div></code></pre>
+<p><em>Infinite loop:</em> A loop that never terminates.</p>
+<pre class="hljs"><code><div><span class="hljs-type">int</span> i;
+<span class="hljs-keyword">for</span> (i= <span class="hljs-number">1</span>; i&lt;= <span class="hljs-number">10</span>; i++) {
+    <span class="hljs-keyword">for</span> (i= <span class="hljs-number">1</span>; i&lt;= <span class="hljs-number">5</span>; i++) {
+        System.out.println(<span class="hljs-string">&quot;hi there.&quot;</span>);
+    }
+}
+</div></code></pre>
+<h2 id="why-does-the-above-loop-not-terminate">Why does the above loop not terminate?</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i= <span class="hljs-number">1</span>; i&lt;= <span class="hljs-number">6</span>; i++) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; j &lt;= i; i++){
+        System.out.print(<span class="hljs-string">&quot;*&quot;</span>);
+    }
+    System.out.println();
+}
+</div></code></pre>
+<h2 id="why-does-the-above-loop-not-terminate-1">Why does the above loop not terminate?</h2>
+<p>Can you write a code to create following output?</p>
+<pre class="hljs"><code><div>
+*
+**
+***
+****
+*****
+</div></code></pre>
+<h1 id="parameters">Parameters</h1>
+<h2 id="what-are-parameters">What are parameters?</h2>
+<p>Any of a set of characteristics that distinguish different members of a family of tasks.</p>
+<p>We use parameters to:</p>
+<ul>
+<li>Generalize a task</li>
+<li>Reduce redundancy</li>
+</ul>
+<h3 id="redundant-cookie-recipe">Redundant Cookie Recipe</h3>
+<p>Recipe for baking 20 cookies:</p>
+<ul>
+<li>Mix the following ingredients in a bowl:
+<ul>
+<li>4 cups flour</li>
+<li>1 cup butter</li>
+<li>1 cup sugar</li>
+<li>2 eggs</li>
+<li>40 bags chocolate chips ...</li>
+</ul>
+</li>
+<li>Place on sheet and Bake for about 10 minutes.</li>
+</ul>
+<p>Recipe for baking 40 cookies:</p>
+<ul>
+<li>Mix the following ingredients in a bowl:
+<ul>
+<li>8 cups flour</li>
+<li>2 cups butter</li>
+<li>2 cups sugar</li>
+<li>4 eggs</li>
+<li>80 bags chocolate chips ...</li>
+</ul>
+</li>
+<li>Place on sheet and Bake for about 10 minutes.</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+* Cookie recipe for 20 cookies
+*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">cookieRecipe20</span><span class="hljs-params">()</span> {
+    System.out.println(<span class="hljs-string">&quot;Recipe for baking 20 cookies:&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -Mix the following ingredients in a bowl:&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -4 cups flour&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -1 cup butter&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -1 cup sugar&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -2 eggs&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -40 bags chocolate chips&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -...&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -Place on sheet and Bake for about 10 minutes.&quot;</span>);
+    System.out.println();
+}
+<span class="hljs-comment">/**
+* Cookie recipe for 40 cookies
+*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">cookieRecipe40</span><span class="hljs-params">()</span> {
+    System.out.println(<span class="hljs-string">&quot;Recipe for baking 40 cookies:&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -Mix the following ingredients in a bowl:&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -8 cups flour&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -2 cup butter&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -2 cup sugar&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -4 eggs&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -80 bags chocolate chips&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -...&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -Place on sheet and Bake for about 10 minutes.&quot;</span>);
+    System.out.println();
+}
+
+<span class="hljs-comment">/**
+* Starts the program.
+*
+* <span class="hljs-doctag">@param</span> args command line arguments
+*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    cookieRecipe20();
+    cookieRecipe40();
+}
+
+</div></code></pre>
+<h3 id="parameterized-cookie-recipe">Parameterized Cookie Recipe</h3>
+<p>Recipe for baking N cookies:</p>
+<ul>
+<li>Mix the following ingredients in a bowl:
+<ul>
+<li>N/5 cups flour</li>
+<li>N/20 cups butter</li>
+<li>N/20 cups sugar</li>
+<li>N/10 eggs</li>
+<li>2N bags chocolate chips ...</li>
+</ul>
+</li>
+<li>Place on sheet and Bake for about 10 minutes.</li>
+</ul>
+<p><code>In the cookie example, N is a parameter.</code></p>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+* Cookie recipe (Limitation: numCookies should be a multiple of 10 since we
+* cannot add a portion of an egg)
+*
+* <span class="hljs-doctag">@param</span> numCookies
+* number of cookies the recipe will make
+*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">cookieRecipe</span><span class="hljs-params">(intnumCookies)</span> {
+    System.out.println(<span class="hljs-string">&quot;Recipe for baking &quot;</span>+ numCookies+ <span class="hljs-string">&quot; cookies:&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -Mix the following ingredients in a bowl:&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -&quot;</span>+ (numCookies/ <span class="hljs-number">5</span>) + <span class="hljs-string">&quot; cups flour&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -&quot;</span>+ (numCookies/ <span class="hljs-number">20.0</span>) + <span class="hljs-string">&quot; cup butter&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -&quot;</span>+ (numCookies/ <span class="hljs-number">20.0</span>) + <span class="hljs-string">&quot; cup sugar&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -&quot;</span>+ (numCookies/ <span class="hljs-number">10</span>) + <span class="hljs-string">&quot; eggs&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -&quot;</span>+ (<span class="hljs-number">2</span> * numCookies) + <span class="hljs-string">&quot; bags chocolate chips&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -...&quot;</span>);
+    System.out.println(<span class="hljs-string">&quot; -Place on sheet and Bake for about 10 minutes.&quot;</span>);
+    System.out.println();
+}
+
+<span class="hljs-comment">/**
+* Starts the program.
+*
+* <span class="hljs-doctag">@param</span> args
+* command line arguments
+*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    cookieRecipe(<span class="hljs-number">20</span>);
+    cookieRecipe(<span class="hljs-number">40</span>);
+    cookieRecipe(<span class="hljs-number">400</span>);
+}
+
+</div></code></pre>
+<h3 id="parameterization">Parameterization</h3>
+<ul>
+<li>Instead of cookieRecipe20, cookieRecipe40, write cookieRecipeto output the recipe for any number of cookies.
+<ul>
+<li>We restrict it to multiple of 10 cookies so we are not adding a portion of an egg.</li>
+</ul>
+</li>
+<li>When declaring the method, we will state that it requires a parameter for the number of cookies.</li>
+<li>When calling the method, we will specify how many cookies.</li>
+</ul>
+<p><img src="images/parameters.png" alt="Calling methods with different parameters"></p>
+<h3 id="syntax-2">Syntax</h3>
+<ul>
+<li>Method Header
+<code>public static void cookieRecipe(intnumCookies) {</code></li>
+<li>Method Call
+<code>cookieRecipe(40);</code></li>
+<li>Multiple Parameters</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> &lt;name&gt; (&lt;type1&gt; &lt;pname1&gt;, ... &lt;typeN&gt; &lt;pnameN&gt;) {
+   &lt;statement(s)&gt;;
+}
+</div></code></pre>
+<ul>
+<li>Passing parameters by calling a method and specifying values for its parameters</li>
+</ul>
+<p><code>&lt;methodName&gt; (&lt;expression of type1&gt;, ... &lt;expression of typeN&gt;);</code></p>
+<h3 id="method-overloading">Method Overloading</h3>
+<p>The ability to define two or more different methods with the same name but different method signatures.</p>
+<p><em>Method Signatures:</em> The name of a method, along with the number and types of parameters</p>
+<p><code>line(5, '*');</code></p>
+<p>VS</p>
+<p><code>line('*');</code></p>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+* Draws a line of character
+* <span class="hljs-doctag">@param</span> num number of characters in the line
+* <span class="hljs-doctag">@param</span> character character to repeat in line
+*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">line</span><span class="hljs-params">(<span class="hljs-type">int</span> num, <span class="hljs-type">char</span> character)</span> {
+<span class="hljs-keyword">for</span>(inti= <span class="hljs-number">1</span>; i&lt;= num; i++) {
+    System.out.print(character);
+}
+System.out.println();
+}
+<span class="hljs-comment">/**
+* Draws a single character
+* <span class="hljs-doctag">@param</span> character character to output once
+*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">line</span><span class="hljs-params">(<span class="hljs-type">char</span> character)</span> {
+    System.out.println(character);
+}
+</div></code></pre>
+<h3 id="value-semantics">Value Semantics</h3>
+<p>When primitive variables (e.g., int, double) are passed as parameters, their values are copied.</p>
+<ul>
+<li>Modifying the parameter will not affect the variable passed in.</li>
+<li><em>Note: this will be different for objects</em></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">strange</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> {
+    x= x + <span class="hljs-number">1</span>;
+    System.out.println(<span class="hljs-string">&quot;1. x = &quot;</span>+ x); <span class="hljs-comment">// outputs 24</span>
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    <span class="hljs-type">int</span> x= <span class="hljs-number">23</span>;
+    strange(x);
+    System.out.println(<span class="hljs-string">&quot;2. x = &quot;</span>+ x); <span class="hljs-comment">// outputs 23</span>
+<span class="hljs-comment">// ...</span>
+}
+</div></code></pre>
+<h1 id="return-values">Return Values</h1>
+<p>To send a value out as the result of a method that can be used in an expression in your program.</p>
+<ul>
+<li>Void method do not return any value.</li>
+</ul>
+<p>Static Method without Return Value</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> &lt;name&gt; (&lt;type1&gt; &lt;pname1&gt;, ... &lt;typeN&gt; &lt;pnameN&gt;) {
+   &lt;statement(s)&gt;;
+}
+</div></code></pre>
+<p>Static Method with Return Value</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;type&gt; &lt;name&gt; (&lt;type1&gt; &lt;pname1&gt;, ... &lt;typeN&gt; &lt;pnameN&gt;) {
+   &lt;statement(s)&gt;;
+   <span class="hljs-keyword">return</span> &lt;expression of type&gt;;
+}
+</div></code></pre>
+<h2 id="return-statements">Return Statements</h2>
+<ul>
+<li>Specifies the value to return, terminating the method
+<code>return &lt;expression&gt;;</code></li>
+<li>Statements after the return statement will not be executed.</li>
+<li>Methods with a non-void return type must contain one or more return statement(s).</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+* Adds a and b together, then returns the result
+* <span class="hljs-doctag">@parama</span> first integer in the addition
+* <span class="hljs-doctag">@paramb</span> second integer in the addition
+* <span class="hljs-doctag">@returna</span> + b
+*/</span>
+<span class="hljs-keyword">public</span>  <span class="hljs-keyword">static</span>  <span class="hljs-type">int</span> <span class="hljs-title function_">addNumbers</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> {
+    returna+ b;
+}
+</div></code></pre>
+<h2 id="common-errors-for-parameters-and-return-values">Common Errors for Parameters and Return Values</h2>
+<ul>
+<li>
+<p>Calling method without parameter</p>
+<ul>
+<li>If a method accepts a parameter, it is illegal to call the method without passing any value for that parameter.</li>
+</ul>
+<p><code>cookieRecipe(); //ERROR: intparameter value required</code></p>
+</li>
+<li>
+<p>Passing parameter of the wrong type</p>
+<ul>
+<li>The value passed to a method must be of the correct type.</li>
+</ul>
+</li>
+</ul>
+<p><code>cookieRecipe(23.7); //ERROR: parameter must be of type int</code></p>
+<ul>
+<li>Not storing the return value.
+<ul>
+<li>The returned value must be stored into a variable or used in an expression to be useful to the caller</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    slope(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>, <span class="hljs-number">3</span>);
+    System.out.println(<span class="hljs-string">&quot;The slope is &quot;</span>+ s);
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    <span class="hljs-type">double</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> slope(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>, <span class="hljs-number">3</span>);
+    System.out.println(<span class="hljs-string">&quot;The slope is &quot;</span>+ result);
+}
+</div></code></pre>
+<ul>
+<li>Placing statements after a return statement. Any statements after a return statement will never be reached!</li>
+</ul>
+<h3 id="returning-with-conditionals">Returning with Conditionals</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">max</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> {
+    <span class="hljs-keyword">if</span>(x &gt; y) {
+        <span class="hljs-keyword">return</span> x;
+    } <span class="hljs-keyword">else</span>{
+        <span class="hljs-keyword">return</span> y;
+    }
+}
+</div></code></pre>
+<h1 id="arrays">Arrays</h1>
+<ul>
+<li><code>Array</code>: a structure that holds multiple values of the same type
+<ul>
+<li>&quot;An array is a simple but powerful programming language construct used to group and organize data.&quot; [Lewis and Loftus]</li>
+</ul>
+</li>
+<li>Elements:values stored in an array</li>
+<li>Index:an integer indicating the position of a value in a data structure
+<ul>
+<li>Arrays use zero-based indexing</li>
+</ul>
+</li>
+</ul>
+<p><img src="images/arrays.png" alt="array structure"></p>
+<h3 id="example">Example</h3>
+<p>Option 1 - individual project 1 variables</p>
+<pre class="hljs"><code><div><span class="hljs-type">int</span> project1student1;
+<span class="hljs-type">int</span> project1student2;
+...
+<span class="hljs-type">int</span> project1student1000;
+</div></code></pre>
+<p>Option 2 – project 1 array</p>
+<pre class="hljs"><code><div><span class="hljs-type">int</span>[] project1;
+</div></code></pre>
+<h2 id="constructing-arrays">Constructing Arrays</h2>
+<ul>
+<li>Arrays are objects so must be constructed
+<code>int[] project1 = new int[3];</code>
+<img src="images/arrays1.png" alt="array structure example"></li>
+<li>Syntax template
+<code>&lt;type&gt;[] &lt;name&gt; = new &lt;type&gt;[&lt;size&gt;];</code></li>
+</ul>
+<h2 id="auto-initialization">Auto initialization</h2>
+<ul>
+<li>The initialization of variables to a default value, as in the initialization of array elements when an array is constructed.</li>
+</ul>
+<p><code>int[] project1 = new int[3];</code>
+<img src="images/arrays1.png" alt="array structure example"></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td><code>0.0</code></td>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td><code>'\0'</code></td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>Objects</td>
+<td><code>null</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>null: a java keyword signifying no object</code></p>
+<h3 id="create-an-intarray-to-store-the-project-one-grades-for-10-students">Create an intarray to store the project one grades for 10 students.</h3>
+<ul>
+<li>Accessing an Array Element: <code>project1[2]</code></li>
+<li>Getting Length of Array: <code>project1.length</code></li>
+</ul>
+<h3 id="array-traversal">Array Traversal</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i&lt; &lt;array&gt;.length; i++){
+    &lt;<span class="hljs-keyword">do</span> something with &lt;array&gt;[i]&gt;
+}
+</div></code></pre>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i&lt; project1.length; i++){
+    System.out.println(project1[i]);
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;COSC130&quot;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i= <span class="hljs-number">0</span>; i&lt; s.length(); i++){
+    System.out.println(s.charAt(i));
+}
+</div></code></pre>
+<h4 id="shorthand-initialization">Shorthand Initialization</h4>
+<p><code>&lt;type&gt;[] &lt;name&gt; = {&lt;value&gt;, &lt;value&gt;,... &lt;value&gt;};</code></p>
+<p><code>char[] size = {'S', 'M', 'L'};</code></p>
+<p><code>int[] daysIn= {31, 28, 31, 30, 31, 30,31, 31, 30, 31, 30, 31};</code></p>
+<p><code>String[] dayNames= {&quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;, &quot;Sun&quot;};</code></p>
+<h3 id="initializing-arrays-with-loops">Initializing Arrays with Loops</h3>
+<p>Because arrays are indexed, using a loop to initialize arrays is really efficient</p>
+<pre class="hljs"><code><div><span class="hljs-type">Scanner</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span> (System.in);
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i&lt; project1.length; i++){
+    System.out.print(<span class="hljs-string">&quot;Project 1 grade: &quot;</span>);
+    project1[i] = in.nextInt();
+}
+</div></code></pre>
+<p><strong>Array elements</strong> can be treated as variables of a given type</p>
+<pre class="hljs"><code><div><span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+<span class="hljs-type">int</span>[] list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">3</span>];
+
+x = <span class="hljs-number">3</span>;
+list[<span class="hljs-number">1</span>] = <span class="hljs-number">3</span>;
+
+x++;
+list[<span class="hljs-number">2</span>]++;
+
+x--;
+list[<span class="hljs-number">0</span>]--;
+
+x *= <span class="hljs-number">2</span>;
+list[<span class="hljs-number">0</span>]*= <span class="hljs-number">2</span>;
+</div></code></pre>
+<p><code>ArrayIndexOutOfBoundsException</code>: Trying to access an element of an array at an index less than 0 or greater than <code>length-1</code></p>
+<pre class="hljs"><code><div><span class="hljs-type">int</span>[] list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">10</span>];
+list[-<span class="hljs-number">3</span>] = <span class="hljs-number">15</span>; <span class="hljs-comment">// illegal</span>
+intx= list[<span class="hljs-number">27</span>]; <span class="hljs-comment">// illegal</span>
+</div></code></pre>
+<h3 id="array-as-parameters">Array as Parameters</h3>
+<p>When you pass an array as a parameter to a method, the method has the ability to change the contents of the array.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ArrayAlgorithms</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>{
+        <span class="hljs-type">int</span>[] list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">10</span>];
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; list.length; i++) {
+            list[i] = <span class="hljs-number">2</span> * i + <span class="hljs-number">1</span>;
+        }
+        incrementAll(list);
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">incrementAll</span><span class="hljs-params">(<span class="hljs-type">int</span>[] data)</span> {
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; data.length; i++) {
+            data[i]++;
+        }
+    }
+}
+</div></code></pre>
+<p><strong>Note: Arrays are objects: the reference is passed, so modifying array elements changes the original data, unlike primitive types.</strong></p>
+<h3 id="limitations-of-array">Limitations of Array</h3>
+<ol>
+<li>You cannot resize an existing array:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-type">int</span>[] a = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">4</span>];
+a.length= <span class="hljs-number">10</span>;<span class="hljs-comment">// error</span>
+</div></code></pre>
+<ol start="2">
+<li>You cannot compare arrays with == or equals:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-type">int</span>[] a1 = {<span class="hljs-number">42</span>, -<span class="hljs-number">7</span>, <span class="hljs-number">1</span>, <span class="hljs-number">15</span>};
+<span class="hljs-type">int</span>[] a2 = {<span class="hljs-number">42</span>, -<span class="hljs-number">7</span>, <span class="hljs-number">1</span>, <span class="hljs-number">15</span>};
+<span class="hljs-keyword">if</span> (a1 == a2) { ... } <span class="hljs-comment">// false!</span>
+<span class="hljs-keyword">if</span> (a1.equals(a2)) { ... } <span class="hljs-comment">// false!</span>
+</div></code></pre>
+<ol start="3">
+<li>An array does not know how to print itself:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-type">int</span>[] a1 = {<span class="hljs-number">42</span>, -<span class="hljs-number">7</span>, <span class="hljs-number">1</span>, <span class="hljs-number">15</span>};
+System.out.println(a1);<span class="hljs-comment">// [I@98f8c4]</span>
+</div></code></pre>
+<h3 id="arrays-class">Arrays Class</h3>
+<ul>
+<li>Addresses limitations of arrays in java</li>
+<li>Part of the java.util package, which must be imported.
+<ul>
+<li><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html"><code>java.util.Arrays</code></a></li>
+</ul>
+</li>
+<li>Useful array manipulation methods</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Return</th>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int</code></td>
+<td><code>binarySearch(array, value)</code></td>
+<td>Returns the index of the given value in a <strong>sorted</strong> array (returns negative number if value doesn't exist)</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>equals(array1, array2)</code></td>
+<td>Returns true if arrays contain the same values in the same order</td>
+</tr>
+<tr>
+<td><code>void</code></td>
+<td><code>fill(array, value)</code></td>
+<td>Sets every element to the value</td>
+</tr>
+<tr>
+<td><code>void</code></td>
+<td><code>sort(array)</code></td>
+<td>Sorts the array into ascending order</td>
+</tr>
+<tr>
+<td><code>String</code></td>
+<td><code>toString(array)</code></td>
+<td>Returns a String containing the array elements, like: <code>[3, 8, 7, 9, 2]</code></td>
+</tr>
+<tr>
+<td><code>String</code></td>
+<td><code>deepToString(array)</code></td>
+<td>Returns a String containing the array elements of multidimensional arrays</td>
+</tr>
+</tbody>
+</table>
+<h3 id="syntax-3">Syntax</h3>
+<p><code>Arrays.&lt;methodName&gt;(&lt;parameters&gt;)</code></p>
+<p>Example: <code>Arrays.toString</code> accepts an array as a parameter and returns a Stringrepresentation of its elements.</p>
+<pre class="hljs"><code><div><span class="hljs-type">int</span>[] primes = { <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">11</span>, <span class="hljs-number">13</span>, <span class="hljs-number">17</span>, <span class="hljs-number">19</span> };
+System.out.println(primes); <span class="hljs-comment">//[I@fee4648</span>
+System.out.println(Arrays.toString(primes)); <span class="hljs-comment">//[2, 3, 5, 7, 11, 13, 17, 19]</span>
+</div></code></pre>
+<h3 id="how-do-we-know-two-arrays-are-equal">How do we know two arrays are equal?</h3>
+<blockquote></blockquote>
+<h3 id="swapping-values">Swapping Values</h3>
+<pre class="hljs"><code><div><span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">5</span>;
+<span class="hljs-type">int</span> <span class="hljs-variable">y</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
+<span class="hljs-type">int</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> x;
+x = y;
+y = temp;
+</div></code></pre>
+<h3 id="reversing-array">Reversing Array</h3>
+<ul>
+<li>Reverse order of elements stored in array
+<ul>
+<li>Array {3, 8, 7, -2, 14, 78} would become array {78, 14, -2, 7, 8, 3}</li>
+</ul>
+</li>
+<li>Algorithm
+<ul>
+<li>swap elements 0 and length-1</li>
+<li>swap elements 1 and length-2</li>
+<li>continue until array is completely reversed</li>
+</ul>
+</li>
+</ul>
+<h3 id="exercise-create-an-array-of-char-containing-your-first-name-a-space-and-your-last-name-eg-jane-doe-converted-to-a-char-create-a-method-to-reverse-the-array-print-the-elements-of-the-reversed-array">Exercise: Create an array of <code>char</code> containing your first name, a space, and your last name (e.g., <code>&quot;Jane Doe&quot;</code> converted to a <code>char[]</code>). Create a method to reverse the array. Print the elements of the reversed array.</h3>
+<blockquote></blockquote>
+<h4 id="did-your-method-return-a-value">Did your method return a value?</h4>
+
+</body>
+</html>
